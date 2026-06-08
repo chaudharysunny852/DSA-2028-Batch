@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+
+        vector<int> nums(26, 0);
+
+        for(char ch : magazine) {
+            nums[ch - 'a']++;
+        }
+
+        for(char ch : ransomNote) {
+            nums[ch - 'a']--;
+
+            if(nums[ch - 'a'] < 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
