@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.empty())
+        {
+            return 0;
+        }
+        vector<int> visited(256,0);
+        
+        int low=0; 
+        int high=0;
+        int currwind=0;
+        int maxwind=0;
+
+
+        while(high<s.size())
+        {
+        
+            while(visited[s[high]]==1)
+            {
+                visited[s[low]]=0;
+                low++;
+            }
+            visited[s[high]]=1;
+            currwind=high-low+1;
+             maxwind=max(maxwind,currwind);
+             high++;
+        
+                }
+
+             
+          return maxwind;
+
+    }
+};
