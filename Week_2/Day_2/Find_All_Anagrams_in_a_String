@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+
+        vector<int> ans;
+
+        if (p.size() > s.size()) {
+            return ans;
+        }
+
+        int k = p.size();
+
+        vector<int> nums1(26, 0);
+        vector<int> nums2(26, 0);
+
+        for (char ch : p) {
+            nums1[ch - 'a']++;
+        }
+
+        for (int i = 0; i < k; i++) {
+            char ch = s[i];
+            nums2[ch - 'a']++;
+        }
+
+        if (nums1 == nums2) {
+            ans.push_back(0);
+        }
+
+        for (int i = k; i < s.size(); i++) {
+
+            nums2[s[i - k] - 'a']--;
+            nums2[s[i] - 'a']++;
+
+            if (nums1 == nums2) {
+                ans.push_back(i - k + 1);
+            }
+        }
+
+        return ans;
+    }
+};
